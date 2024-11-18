@@ -9,12 +9,10 @@ export default function NowPlayingList() {
     fetchMovieData(movieApi.getNowPlayingMovies, setNowPlayingData);
   }, []);
 
-  console.log("nowPlayingData : ", nowPlayingData);
-
   return (
     <>
       <div>
-        <h2>현재 상영 중인 영화</h2>
+        <h2>현재 상영 중인 영화- 전체</h2>
         <ul className="flex dotNone">{nowPlayingData}</ul>
       </div>
     </>
