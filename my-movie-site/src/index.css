@@ -69,6 +69,7 @@ button:focus-visible {
 
 .flex {
   display: flex;
+  flex-flow: row wrap;
 }
 
 .dotNone {
