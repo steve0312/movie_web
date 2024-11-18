@@ -80,6 +80,7 @@ button:focus-visible {
   margin: 0 auto;
 }
 
-.textRed {
+.logo {
   color: red;
+  text-decoration: none;
 }
