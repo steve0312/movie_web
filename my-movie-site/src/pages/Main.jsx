@@ -46,7 +46,7 @@ export default function Main() {
         <ul className="flex dotNone">{popularData.slice(0, 7)}</ul>
       </div>
       <div>
-        <h2>순위별 영화</h2>
+        <h2>최고 평점 영화</h2>
         <button
           onClick={() => {
             navigate("/topRatedMovies");
