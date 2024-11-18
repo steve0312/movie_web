@@ -1,9 +1,10 @@
 import React from "react";
+import Header from "../components/Header";
 
 export default function RootLayout() {
   return (
     <>
-      <header>내플릭스</header>
+      <Header></Header>
       <main>main</main>
       <footer>footer</footer>
     </>
