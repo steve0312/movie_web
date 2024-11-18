@@ -17,6 +17,13 @@ const movieApi = {
     );
     return response.data;
   },
+
+  getTopRatedMovies: async () => {
+    const response = await api.get(
+      `/top_rated?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+    );
+    return response.data;
+  },
 };
 
 export default movieApi;

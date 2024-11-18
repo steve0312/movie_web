@@ -5,6 +5,7 @@ import movieApi from "../api/moviesApi";
 export default function Main() {
   const [nowPlayingData, setNowPlayingData] = useState([]);
   const [popularData, setPopularData] = useState([]);
+  const [topRatedData, setTopRatedData] = useState([]);
 
   useEffect(() => {
     async function getNowPlayingMovieData() {
@@ -14,7 +15,6 @@ export default function Main() {
 
       const nowPlayingMovies = results.map((result) => {
         const { id, title, poster_path } = result;
-        console.log("now title : ", title);
 
         return (
           <li key={id} className="marginMovie">
@@ -26,6 +26,7 @@ export default function Main() {
 
       setNowPlayingData(nowPlayingMovies);
     }
+
     async function getPopularMovieData() {
       // 인기있는 영화의 데이터를 조회
       const data = await movieApi.getPopularMovies();
@@ -33,7 +34,6 @@ export default function Main() {
 
       const popularMovies = results.map((result) => {
         const { id, title, poster_path } = result;
-        console.log("pop title : ", title);
 
         return (
           <li key={id} className="marginMovie">
@@ -45,8 +45,28 @@ export default function Main() {
 
       setPopularData(popularMovies);
     }
+
+    async function getTopRatedMovieData() {
+      // 순위별 영화의 데이터를 조회
+      const data = await movieApi.getTopRatedMovies();
+      const results = data.results;
+
+      const topRatedMovies = results.map((result) => {
+        const { id, title, poster_path } = result;
+
+        return (
+          <li key={id} className="marginMovie">
+            <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
+            <div>{title}</div>
+          </li>
+        );
+      });
+
+      setTopRatedData(topRatedMovies);
+    }
     getNowPlayingMovieData();
     getPopularMovieData();
+    getTopRatedMovieData();
   }, []);
 
   return (
@@ -56,6 +76,8 @@ export default function Main() {
       <ul className="flex dotNone">{nowPlayingData.slice(0, 5)}</ul>
       <h2>인기있는 영화</h2>
       <ul className="flex dotNone">{popularData.slice(0, 5)}</ul>
+      <h2>순위별 영화</h2>
+      <ul className="flex dotNone">{topRatedData.slice(0, 5)}</ul>
     </>
   );
 }
