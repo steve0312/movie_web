@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import movieApi from "../api/moviesApi";
 import { useNavigate } from "react-router-dom";
+import { fetchMovieData } from "../utils/movieService";
 
 export default function Main() {
   const [nowPlayingData, setNowPlayingData] = useState([]);
@@ -9,28 +10,6 @@ export default function Main() {
   const [topRatedData, setTopRatedData] = useState([]);
 
   const navigate = useNavigate();
-
-  async function fetchMovieData(api, setData) {
-    try {
-      const data = await api();
-      const results = data.results;
-
-      const movies = results.map((result) => {
-        const { id, title, poster_path } = result;
-
-        return (
-          <li key={id} className="marginMovie">
-            <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
-            <div>{title}</div>
-          </li>
-        );
-      });
-
-      setData(movies);
-    } catch (error) {
-      console.error("data fetching error : ", error);
-    }
-  }
 
   useEffect(() => {
     // 현재 상영 중인 영화의 데이터를 조회
