@@ -1,10 +1,11 @@
 import React from "react";
-import RootLayout from "./layouts/RootLayout";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 export default function App() {
   return (
     <>
-      <RootLayout></RootLayout>
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }

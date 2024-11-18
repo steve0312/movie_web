@@ -71,13 +71,22 @@ export default function Main() {
 
   return (
     <>
-      <h2>현재 상영 중인 영화</h2>
-      {/* 현재 상영 중인 영화를 5개만 보여줌 */}
-      <ul className="flex dotNone">{nowPlayingData.slice(0, 5)}</ul>
-      <h2>인기있는 영화</h2>
-      <ul className="flex dotNone">{popularData.slice(0, 5)}</ul>
-      <h2>순위별 영화</h2>
-      <ul className="flex dotNone">{topRatedData.slice(0, 5)}</ul>
+      <div>
+        <h2>현재 상영 중인 영화</h2>
+        <button>더보기</button>
+        {/* 현재 상영 중인 영화를 5개만 보여줌 */}
+        <ul className="flex dotNone">{nowPlayingData.slice(0, 7)}</ul>
+      </div>
+      <div>
+        <h2>인기있는 영화</h2>
+        <button>더보기</button>
+        <ul className="flex dotNone">{popularData.slice(0, 7)}</ul>
+      </div>
+      <div>
+        <h2>순위별 영화</h2>
+        <button>더보기</button>
+        <ul className="flex dotNone">{topRatedData.slice(0, 7)}</ul>
+      </div>
     </>
   );
 }

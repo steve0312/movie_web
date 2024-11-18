@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../components/Header";
-import Main from "../components/Main";
+import { Outlet } from "react-router-dom";
 
 export default function RootLayout() {
   return (
     <>
       <Header></Header>
-      <Main></Main>
+      <Outlet></Outlet>
       <footer>footer</footer>
     </>
   );

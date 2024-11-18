@@ -78,3 +78,7 @@ button:focus-visible {
 .marginMovie {
   margin: 0 auto;
 }
+
+.textRed {
+  color: red;
+}
