@@ -31,6 +31,13 @@ const movieApi = {
     );
     return response.data;
   },
+
+  getMovieReview: async (movieId) => {
+    const response = await api.get(
+      `/${movieId}/reviews?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+    );
+    return response.data;
+  },
 };
 
 export default movieApi;

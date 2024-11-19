@@ -76,8 +76,20 @@ button:focus-visible {
   list-style: none;
 }
 
-.marginMovie {
+.marginAuto {
   margin: 0 auto;
+}
+
+.marginTop {
+  margin-top: 5rem;
+}
+
+.marginBottom {
+  margin-bottom: 0.7rem;
+}
+
+.marginReview {
+  margin-bottom: 2rem;
 }
 
 .textRed {
