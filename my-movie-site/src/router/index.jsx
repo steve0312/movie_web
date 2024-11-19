@@ -4,6 +4,7 @@ import Main from "../pages/Main";
 import NowPlayingList from "../pages/NowPlayingList";
 import PopularList from "../pages/PopularList";
 import TopRatedList from "../pages/TopRatedList";
+import MovieDetail from "../pages/MovieDetail";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/topRatedMovies",
         element: <TopRatedList />,
+      },
+      {
+        path: "/movieDetail/:movieId",
+        element: <MovieDetail />,
       },
     ],
   },

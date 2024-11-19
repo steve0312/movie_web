@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export async function fetchMovieData(api, setData) {
   try {
     const data = await api();
@@ -8,8 +10,10 @@ export async function fetchMovieData(api, setData) {
 
       return (
         <li key={id} className="marginMovie">
-          <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
-          <div>{title}</div>
+          <Link to={`/movieDetail/${id}`} className="textBlack underLineNone">
+            <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
+            <div>{title}</div>
+          </Link>
         </li>
       );
     });

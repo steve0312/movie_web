@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <h1>
-        <Link to="/" className="logo">
+        <Link to="/" className="textRed underLineNone">
           내플릭스
         </Link>
       </h1>
