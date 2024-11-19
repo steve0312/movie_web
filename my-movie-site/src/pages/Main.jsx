@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import movieApi from "../api/moviesApi";
 import { Link } from "react-router-dom";
-import { fetchMovieData } from "../utils/movieService";
+import { fetchMovieData } from "../utils/movieListService";
 
 export default function Main() {
   const [nowPlayingData, setNowPlayingData] = useState([]);

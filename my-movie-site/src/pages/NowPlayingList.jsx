@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import movieApi from "../api/moviesApi";
-import { fetchMovieData } from "../utils/movieService";
+import { fetchMovieData } from "../utils/movieListService";
 
 export default function NowPlayingList() {
   const [nowPlayingData, setNowPlayingData] = useState([]);

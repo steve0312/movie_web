@@ -11,7 +11,8 @@ export async function fetchMovieData(api, setData) {
       return (
         <li key={id} className="marginMovie">
           <Link to={`/movieDetail/${id}`} className="textBlack underLineNone">
-            <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
+            <img src={`https://image.tmdb.org/t/p/w200/${poster_path}`} />
+
             <div>{title}</div>
           </Link>
         </li>
@@ -20,6 +21,6 @@ export async function fetchMovieData(api, setData) {
 
     setData(movies);
   } catch (error) {
-    console.error("data fetching error : ", error);
+    console.error("movieListService fetching error : ", error);
   }
 }
