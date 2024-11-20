@@ -17,7 +17,10 @@ export default function Header() {
         </h1>
         {isLoggedIn ? (
           <div className="flexBetween">
-            <Link className="contentCenter underLineNone textBlack">
+            <Link
+              to="/myPage"
+              className="contentCenter underLineNone textBlack"
+            >
               마이페이지
             </Link>
             <Link

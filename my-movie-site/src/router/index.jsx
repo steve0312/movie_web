@@ -6,6 +6,7 @@ import PopularList from "../pages/PopularList";
 import TopRatedList from "../pages/TopRatedList";
 import MovieDetail from "../pages/MovieDetail";
 import Login from "../pages/Login";
+import MyPage from "../pages/MyPage";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/myPage",
+        element: <MyPage />,
       },
     ],
   },
