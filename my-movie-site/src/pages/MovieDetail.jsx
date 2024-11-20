@@ -23,7 +23,7 @@ export default function MovieDetail() {
           { label: "개요", value: data.overview },
           { label: "개봉일", value: data.release_date },
           { label: "상영시간", value: `${data.runtime}분` },
-          { label: "상영여부", value: data.status ? "예매 중" : "상영 종료" },
+          { label: "상영여부", value: data.status ? "상영 중" : "상영 종료" },
           { label: "평점", value: `${data.vote_average.toFixed(2)}` },
         ];
 
@@ -36,8 +36,8 @@ export default function MovieDetail() {
       try {
         const data = await movieApi.getMovieReview(movieId);
         const results = data.results;
-        console.log("data : ", data);
-        console.log("results : ", results);
+        // console.log("data : ", data);
+        // console.log("results : ", results);
 
         const reviews = results.map((review) => {
           const { id, author, content } = review;
@@ -45,7 +45,7 @@ export default function MovieDetail() {
           return (
             <li key={id} className="dotNone marginReview">
               <div>{`유저 : ${author}`}</div>
-              <div>{`후기 : ${content}`}</div>
+              <p>{`후기 : ${content}`}</p>
             </li>
           );
         });
@@ -63,25 +63,33 @@ export default function MovieDetail() {
   return (
     <>
       <h2>상세 정보</h2>
-      <ul className="dotNone">
-        {movieDetail.map((info, index) => (
-          <li key={index} className="marginBottom">
-            <strong>{info.label === "포스터" ? "" : info.label}</strong>{" "}
-            {info.label === "포스터" ? (
+      <div className="movieDetailContainer">
+        <div className="moviePoster">
+          {movieDetail
+            .filter((info) => info.label === "포스터")
+            .map((info, index) => (
               <img
-                src={`https://image.tmdb.org/t/p/w400${info.value}`}
+                key={index}
+                src={`https://image.tmdb.org/t/p/w200${info.value}`}
                 alt={info.label}
               />
-            ) : info.label === "장르" ? (
-              info.value.map((genre) => genre.name).join(" / ")
-            ) : (
-              info.value
-            )}
-          </li>
-        ))}
-      </ul>
-      <h2 className="marginTop">후기</h2>
-      <ul>{movieReview}</ul>
+            ))}
+        </div>
+        <ul className="movieInfo paddingRight">
+          {movieDetail
+            .filter((info) => info.label !== "포스터")
+            .map((info, index) => (
+              <li key={index}>
+                <strong>{info.label}</strong>{" "}
+                {info.label === "장르"
+                  ? info.value.map((genre) => genre.name).join(" / ")
+                  : info.value}
+              </li>
+            ))}
+        </ul>
+      </div>
+      <h2 className="marginReview">후기</h2>
+      <ul className="paddingRight">{movieReview}</ul>
     </>
   );
 }

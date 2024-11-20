@@ -69,25 +69,25 @@ button:focus-visible {
 
 .flex {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row wrap; /* 전체 영화볼 때 배치 */
 }
 
 .flexBetween {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* header 배치 */
 }
 
 .contentCenter {
   display: flex;
-  align-items: center;
+  align-items: center; /* 로그인, 마이페이지 중앙 정렬 */
 }
 
 .dotNone {
-  list-style: none;
+  list-style: none; /* li태그 점 없애기 */
 }
 
 .marginAuto {
-  margin: 0 auto;
+  margin: 0 auto; /* 영화 목록 배치  */
 }
 
 .marginTop {
@@ -103,7 +103,12 @@ button:focus-visible {
 }
 
 .marginReview {
-  margin-bottom: 2rem;
+  margin-top: 3rem;
+}
+
+.paddingHeader {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .paddingRight {
@@ -115,9 +120,34 @@ button:focus-visible {
 }
 
 .underLineNone {
-  text-decoration: none;
+  text-decoration: none; /* 링크 밑줄 제거 */
 }
 
 .textBlack {
   color: black;
+}
+
+.movieDetailContainer {
+  display: flex;
+  gap: 20px; /* 포스터와 정보 간 간격 */
+}
+
+.moviePoster {
+  flex-shrink: 0; /* 포스터 크기를 고정 */
+  max-width: 200px; /* 포스터 최대 너비 설정 */
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column; /* 정보를 세로로 정렬 */
+}
+
+.movieInfo li {
+  margin-bottom: 10px; /* 각 항목 간 간격 */
+  list-style: none; /* 점 제거 */
+}
+
+.movieInfo strong {
+  font-weight: bold;
+  margin-right: 10px; /* 라벨과 값 사이 간격 */
 }
