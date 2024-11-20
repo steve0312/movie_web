@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import movieApi from "../api/moviesApi";
+import { useDispatch, useSelector } from "react-redux";
+import { addSavedMovie } from "../store/slices/savedMovieSlice";
 
 export default function MovieDetail() {
   const { movieId } = useParams();
   const [movieDetail, setMovieDetail] = useState([]);
   const [movieReview, setMovieReview] = useState([]);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function getMovieDetailData() {
@@ -36,8 +42,6 @@ export default function MovieDetail() {
       try {
         const data = await movieApi.getMovieReview(movieId);
         const results = data.results;
-        // console.log("data : ", data);
-        // console.log("results : ", results);
 
         const reviews = results.map((review) => {
           const { id, author, content } = review;
@@ -71,6 +75,7 @@ export default function MovieDetail() {
               <img
                 key={index}
                 src={`https://image.tmdb.org/t/p/w200${info.value}`}
+                className="imgHeight"
                 alt={info.label}
               />
             ))}
@@ -88,6 +93,17 @@ export default function MovieDetail() {
             ))}
         </ul>
       </div>
+
+      {/* 저장 버튼을 클릭했을 때 로그인 상태이면 마이페이지에 저장하고 로그아웃 상태이면 로그인을 진행하도록 로그인 페이지로 이동 */}
+      <button
+        onClick={() => {
+          isLoggedIn
+            ? dispatch(addSavedMovie({ movieDetail, movieId }))
+            : navigate("/login");
+        }}
+      >
+        저장
+      </button>
       <h2 className="marginReview">후기</h2>
       <ul className="paddingRight">{movieReview}</ul>
     </>
