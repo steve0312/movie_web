@@ -98,6 +98,10 @@ button:focus-visible {
   margin-bottom: 0.7rem;
 }
 
+.marginLeft {
+  margin-left: 1.5rem;
+}
+
 .marginReview {
   margin-bottom: 2rem;
 }

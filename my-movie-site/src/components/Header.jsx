@@ -15,9 +15,32 @@ export default function Header() {
             내플릭스
           </Link>
         </h1>
-        <Link to="/login" className="contentCenter underLineNone textBlack">
-          로그인
-        </Link>
+        {isLoggedIn ? (
+          <div className="flexBetween">
+            <Link className="contentCenter underLineNone textBlack">
+              마이페이지
+            </Link>
+            <Link
+              to="/"
+              onClick={() => {
+                dispatch(logout());
+              }}
+              className="contentCenter underLineNone textBlack marginLeft"
+            >
+              로그아웃
+            </Link>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            // onClick={() => {
+            //   dispatch(login());
+            // }}
+            className="contentCenter underLineNone textBlack"
+          >
+            로그인
+          </Link>
+        )}
       </nav>
     </>
   );
