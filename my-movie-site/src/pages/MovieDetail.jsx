@@ -1,23 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import movieApi from "../api/moviesApi";
 import { useDispatch, useSelector } from "react-redux";
-import { addSavedMovie } from "../store/slices/savedMovieSlice";
+import {
+  addSavedMovie,
+  removeSavedMovie,
+  saveMovie,
+  unsaveMovie,
+} from "../store/slices/savedMovieSlice";
 
 export default function MovieDetail() {
+  // 영화 ID를 URL 파라미터에서 추출
   const { movieId } = useParams();
+
+  // 영화 상세 정보와 리뷰 데이터를 관리하는 state
   const [movieDetail, setMovieDetail] = useState([]);
   const [movieReview, setMovieReview] = useState([]);
+
+  // 로그인 여부를 Redux 상태에서 가져옴
   const { isLoggedIn } = useSelector((state) => state.auth);
+
+  // 저장된 영화 목록을 Redux 상태에서 가져옴
+  const savedMovies = useSelector((state) => state.savedMovie);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // 현재 영화가 저장된 상태인지 확인
+  const isSaved = savedMovies.some(
+    (movie) => movie.movieId === movieId && movie.isSaved
+  );
+
+  // 영화 상세 정보를 가져오는 함수
   useEffect(() => {
     async function getMovieDetailData() {
       try {
+        // API 호출을 통해 영화 상세 데이터를 가져옴
         const data = await movieApi.getMovieDetails(movieId);
 
+        // 가져온 데이터를 상세 정보 형식으로 가공
         const detailDatas = [
           { label: "포스터", value: data.poster_path },
           { label: "제목", value: data.title },
@@ -38,21 +59,19 @@ export default function MovieDetail() {
         console.error("getMovieDetailData fetching error : ", error);
       }
     }
+    // 영화 리뷰를 가져오는 함수
     async function getMovieReviewData() {
       try {
+        // API 호출을 통해 리뷰 데이터를 가져옴
         const data = await movieApi.getMovieReview(movieId);
-        const results = data.results;
 
-        const reviews = results.map((review) => {
-          const { id, author, content } = review;
-
-          return (
-            <li key={id} className="dotNone marginReview">
-              <div>{`유저 : ${author}`}</div>
-              <p>{`후기 : ${content}`}</p>
-            </li>
-          );
-        });
+        // 리뷰 데이터를 리스트 형식으로 가공
+        const reviews = data.results.map(({ id, author, content }) => (
+          <li key={id} className="dotNone marginReview">
+            <div>{`유저 : ${author}`}</div>
+            <p>{`후기 : ${content}`}</p>
+          </li>
+        ));
 
         setMovieReview(reviews);
       } catch (error) {
@@ -62,13 +81,34 @@ export default function MovieDetail() {
 
     getMovieDetailData();
     getMovieReviewData();
-  }, [movieId]);
+  }, [movieId]); // movieId가 변경될 때마다 실행
+
+  // 영화 저장/삭제 버튼 클릭 시 호출되는 핸들러
+  function handleSaveClick() {
+    // 로그인 상태가 아닌 경우 로그인 페이지로 이동
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
+
+    // 저장된 상태라면 삭제, 저장되지 않은 상태라면 저장
+    if (isSaved) {
+      dispatch(removeSavedMovie({ movieId }));
+      dispatch(unsaveMovie({ movieId }));
+    } else {
+      dispatch(addSavedMovie({ movieDetail, movieId }));
+      dispatch(saveMovie({ movieId }));
+    }
+  }
 
   return (
     <>
+      {/* 영화 상세 정보 파트 */}
       <h2>상세 정보</h2>
       <div className="movieDetailContainer">
         <div className="moviePoster">
+          {/* 영화 포스터 파트 */}
+          {/* 포스터 정보만 필터링 */}
           {movieDetail
             .filter((info) => info.label === "포스터")
             .map((info, index) => (
@@ -80,7 +120,10 @@ export default function MovieDetail() {
               />
             ))}
         </div>
+
+        {/* 영화 상세 정보 목록 */}
         <ul className="movieInfo paddingRight">
+          {/* 포스터를 제외한 정보만 필터링 */}
           {movieDetail
             .filter((info) => info.label !== "포스터")
             .map((info, index) => (
@@ -94,16 +137,12 @@ export default function MovieDetail() {
         </ul>
       </div>
 
-      {/* 저장 버튼을 클릭했을 때 로그인 상태이면 마이페이지에 저장하고 로그아웃 상태이면 로그인을 진행하도록 로그인 페이지로 이동 */}
-      <button
-        onClick={() => {
-          isLoggedIn
-            ? dispatch(addSavedMovie({ movieDetail, movieId }))
-            : navigate("/login");
-        }}
-      >
-        저장
+      {/* 영화 저장/삭제 토글 버튼 */}
+      <button onClick={handleSaveClick}>
+        {isSaved ? "저장 ❤️" : "저장 🤍"}
       </button>
+
+      {/* 영화 리뷰 파트 */}
       <h2 className="marginReview">후기</h2>
       <ul className="paddingRight">{movieReview}</ul>
     </>
