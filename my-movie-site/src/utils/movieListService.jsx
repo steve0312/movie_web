@@ -11,7 +11,10 @@ export async function fetchMovieData(api, setData) {
       return (
         <li key={id} className="marginAuto">
           <Link to={`/movieDetail/${id}`} className="textBlack underLineNone">
-            <img src={`https://image.tmdb.org/t/p/w200/${poster_path}`} />
+            <img
+              src={`https://image.tmdb.org/t/p/w200/${poster_path}`}
+              className="imgHeight"
+            />
 
             <div>{title}</div>
           </Link>

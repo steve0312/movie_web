@@ -77,6 +77,11 @@ button:focus-visible {
   justify-content: space-between; /* header 배치 */
 }
 
+.flexEven {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .contentCenter {
   display: flex;
   align-items: center; /* 로그인, 마이페이지 중앙 정렬 */
@@ -119,12 +124,16 @@ button:focus-visible {
   color: red;
 }
 
-.underLineNone {
-  text-decoration: none; /* 링크 밑줄 제거 */
-}
-
 .textBlack {
   color: black;
+}
+
+.imgHeight {
+  height: 300px;
+}
+
+.underLineNone {
+  text-decoration: none; /* 링크 밑줄 제거 */
 }
 
 .movieDetailContainer {
