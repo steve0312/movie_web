@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../store/slices/authSlice";
+import { login, logout } from "../store/slices/authSlice";
 
 export default function Header() {
   const { isLoggedIn } = useSelector((state) => state.auth);
