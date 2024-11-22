@@ -7,11 +7,13 @@ import TopRatedList from "../pages/TopRatedList";
 import MovieDetail from "../pages/MovieDetail";
 import Login from "../pages/Login";
 import MyPage from "../pages/MyPage";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
