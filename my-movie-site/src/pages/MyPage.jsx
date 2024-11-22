@@ -33,7 +33,10 @@ export default function MyPage() {
 
             return (
               <li key={movieId}>
-                <Link to={`/movieDetail/${movieId}`}>
+                <Link
+                  to={`/movieDetail/${movieId}`}
+                  className="underLineNone textBlack textCenter"
+                >
                   <img
                     src={`https://image.tmdb.org/t/p/w200${poster}`}
                     className="imgHeight"
