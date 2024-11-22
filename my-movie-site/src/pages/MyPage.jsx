@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MyPage() {
   // 저장된 영화 데이터의 포스터와 제목, id 정보를 store에서 받아오기 위해 설정
   const savedMovies = useSelector((state) => state.savedMovie);
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+
+  // 로그아웃 상태에서 URL을 통해 마이페이지 접근을 시도하는 경우 홈으로 이동
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
 
   return (
     <>
