@@ -139,7 +139,7 @@ export default function MovieDetail() {
 
       {/* 영화 저장/삭제 토글 버튼 */}
       <button onClick={handleSaveClick}>
-        {isSaved ? "저장 ❤️" : "저장 🤍"}
+        {isLoggedIn ? (isSaved ? "저장 ❤️" : "저장 🤍") : "저장 🤍"}
       </button>
 
       {/* 영화 리뷰 파트 */}
