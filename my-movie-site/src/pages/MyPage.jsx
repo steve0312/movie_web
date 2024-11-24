@@ -39,7 +39,7 @@ export default function MyPage() {
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w200${poster}`}
-                    className="imgHeight"
+                    className="imgHeight marginBottom"
                   />
                   <div>{title}</div>
                 </Link>

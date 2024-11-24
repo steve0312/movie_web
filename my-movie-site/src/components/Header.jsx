@@ -16,7 +16,7 @@ export default function Header() {
           </Link>
         </h1>
         {isLoggedIn ? (
-          <div className="flexBetween">
+          <div className="logoutBetween">
             <Link
               to="/myPage"
               className="contentCenter underLineNone textWhite"
@@ -39,7 +39,7 @@ export default function Header() {
             // onClick={() => {
             //   dispatch(login());
             // }}
-            className="contentCenter underLineNone textWhite"
+            className="contentCenter underLineNone textWhite loginBetween"
           >
             로그인
           </Link>

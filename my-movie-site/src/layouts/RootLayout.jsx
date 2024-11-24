@@ -7,7 +7,9 @@ export default function RootLayout() {
     <>
       <Header></Header>
       <Outlet></Outlet>
-      <footer>footer</footer>
+      <footer className="footer">
+        Copyright © 2024 by Sangho. All rights reserved.
+      </footer>
     </>
   );
 }

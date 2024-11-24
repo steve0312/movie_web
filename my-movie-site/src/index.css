@@ -9,6 +9,7 @@
 .flex {
   display: flex;
   flex-flow: row wrap; /* 전체 영화볼 때 배치 */
+  gap: 20px;
 }
 
 .header {
@@ -16,17 +17,31 @@
   justify-content: space-between; /* 양쪽 끝에 요소를 배치 */
   align-items: center; /* 세로로 가운데 정렬 */
   width: 100%; /* 전체 너비를 차지하도록 */
+  height: 20vh;
+  position: relative;
 }
 
 .header h1 {
-  flex: 1; /* 로고가 중앙에 위치하도록 */
+  position: absolute; /* 로고를 절대 위치로 설정하여 중앙에 배치 */
+  left: 50%; /* 화면 가로의 50% 지점에 배치 */
+  transform: translateX(-50%); /* 정확히 중앙에 오도록 보정 */
   text-align: center; /* 로고 텍스트 중앙 정렬 */
 }
 
-.flexBetween {
+.loginBetween {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  left: 95%;
+}
+
+.logoutBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 85%;
 }
 
 .flexEven {
@@ -47,12 +62,8 @@
   margin: 0 auto; /* 영화 목록 배치  */
 }
 
-.marginTop {
-  margin-top: 5rem;
-}
-
 .marginBottom {
-  margin-bottom: 0.7rem;
+  margin-bottom: 2rem;
 }
 
 .marginLeft {
@@ -121,6 +132,13 @@ ul {
   margin-right: 10px; /* 라벨과 값 사이 간격 */
 }
 
+.footer {
+  color: silver;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 3rem;
+}
+
 @font-face {
   font-family: "나눔손글씨";
   src: url("../나눔손글씨\ 다시\ 시작해.ttf") format("truetype");
@@ -134,7 +152,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* 화면 전체 높이 */
+  height: 60vh; /* Viewport 높이만큼 설정 */
 }
 
 .loginForm {
