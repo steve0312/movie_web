@@ -11,7 +11,7 @@ export async function fetchMovieData(api, setData) {
       return (
         <li key={id} className="marginAuto">
           <Link
-            to={`/movieDetail/${id}`}
+            to={`/movie/detail/${id}`}
             className="textWhite underLineNone textCenter"
           >
             <img
