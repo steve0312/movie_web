@@ -9,9 +9,9 @@ export default function Header() {
 
   return (
     <>
-      <nav className="flexBetween">
+      <nav className="header">
         <h1>
-          <Link to="/" className="textRed underLineNone">
+          <Link to="/" className="textRed underLineNone logoFont">
             내플릭스
           </Link>
         </h1>
@@ -19,7 +19,7 @@ export default function Header() {
           <div className="flexBetween">
             <Link
               to="/myPage"
-              className="contentCenter underLineNone textBlack"
+              className="contentCenter underLineNone textWhite"
             >
               마이페이지
             </Link>
@@ -28,7 +28,7 @@ export default function Header() {
               onClick={() => {
                 dispatch(logout());
               }}
-              className="contentCenter underLineNone textBlack marginLeft"
+              className="contentCenter underLineNone textWhite marginLeft"
             >
               로그아웃
             </Link>
@@ -39,7 +39,7 @@ export default function Header() {
             // onClick={() => {
             //   dispatch(login());
             // }}
-            className="contentCenter underLineNone textBlack"
+            className="contentCenter underLineNone textWhite"
           >
             로그인
           </Link>

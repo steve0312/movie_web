@@ -24,21 +24,20 @@ export default function Login() {
   }
 
   return (
-    <>
-      <div>Login</div>
-      <form onSubmit={handleLoginSubmit}>
-        <div>
-          <label htmlFor="userId">아이디 : </label>
+    <div className="loginWrapper">
+      <form className="loginForm" onSubmit={handleLoginSubmit}>
+        <div className="flexEven contentCenter">
+          <label htmlFor="userId">아이디</label>
           <input type="text" name="userId" id="userId" />
         </div>
 
-        <div>
-          <label htmlFor="userPassword">비밀번호 : </label>
+        <div className="flexEven contentCenter">
+          <label htmlFor="userPassword">비밀번호</label>
           <input type="password" name="userPassword" id="userPassword" />
         </div>
 
         <button>로그인</button>
       </form>
-    </>
+    </div>
   );
 }

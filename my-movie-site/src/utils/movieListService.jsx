@@ -12,7 +12,7 @@ export async function fetchMovieData(api, setData) {
         <li key={id} className="marginAuto">
           <Link
             to={`/movieDetail/${id}`}
-            className="textBlack underLineNone textCenter"
+            className="textWhite underLineNone textCenter"
           >
             <img
               src={`https://image.tmdb.org/t/p/w200/${poster_path}`}
