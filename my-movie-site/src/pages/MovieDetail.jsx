@@ -87,7 +87,8 @@ export default function MovieDetail() {
   function handleSaveClick() {
     // 로그인 상태가 아닌 경우 로그인 페이지로 이동
     if (!isLoggedIn) {
-      navigate("/login");
+      // 로그인 후 영화 상세 페이지로 돌아올 수 있도록 경로 전달
+      navigate("/login", { state: { from: window.location.pathname } });
       return;
     }
 

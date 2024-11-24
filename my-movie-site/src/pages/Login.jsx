@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { login } from "../store/slices/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  // 이전 페이지 경로가 있으면 그 페이지로, 없으면 메인 페이지로 이동
+  const location = useLocation();
+  const from = location.state?.from || "/";
 
   // 로그인 했을 때 뒤로가기 하면 홈으로 이동
   useEffect(() => {
@@ -20,7 +24,8 @@ export default function Login() {
     e.preventDefault();
 
     dispatch(login());
-    navigate("/");
+    // navigate("/");
+    navigate(from, { replace: true });
   }
 
   return (
