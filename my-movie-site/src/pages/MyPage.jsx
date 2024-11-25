@@ -19,35 +19,37 @@ export default function MyPage() {
 
   return (
     <>
-      <h2 className="marginBottom">저장한 영화</h2>
-      <ul className="dotNone flexEven">
-        {/* 마이페이지를 클릭했을 때 저장한 영화가 없으면 저장에 대한 안내를 하고, 저장한 영화가 있으면 포스터와 제목을 표시  */}
-        {savedMovies.length === 0 ? (
-          <div className="marginBottom">
-            영화 상세 페이지에서 저장 버튼을 누르면 마이페이지에서 확인하실 수
-            있습니다{" :) "}
-          </div>
-        ) : (
-          savedMovies.map((savedMovie) => {
-            const { poster, title, movieId } = savedMovie;
+      <div className="mainHeight">
+        <h2 className="marginBottom">저장한 영화</h2>
+        <ul className="dotNone flexEven">
+          {/* 마이페이지를 클릭했을 때 저장한 영화가 없으면 저장에 대한 안내를 하고, 저장한 영화가 있으면 포스터와 제목을 표시  */}
+          {savedMovies.length === 0 ? (
+            <div className="marginBottom">
+              영화 상세 페이지에서 저장 버튼을 누르면 마이페이지에서 확인하실 수
+              있습니다{" :) "}
+            </div>
+          ) : (
+            savedMovies.map((savedMovie) => {
+              const { poster, title, movieId } = savedMovie;
 
-            return (
-              <li key={movieId}>
-                <Link
-                  to={`/movie/detail/${movieId}`}
-                  className="underLineNone textBlack textCenter"
-                >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${poster}`}
-                    className="imgHeight marginBottom"
-                  />
-                  <div>{title}</div>
-                </Link>
-              </li>
-            );
-          })
-        )}
-      </ul>
+              return (
+                <li key={movieId}>
+                  <Link
+                    to={`/movie/detail/${movieId}`}
+                    className="underLineNone textBlack textCenter"
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${poster}`}
+                      className="imgHeight marginBottom"
+                    />
+                    <div>{title}</div>
+                  </Link>
+                </li>
+              );
+            })
+          )}
+        </ul>
+      </div>
     </>
   );
 }

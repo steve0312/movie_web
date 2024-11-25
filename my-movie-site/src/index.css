@@ -149,11 +149,15 @@ ul {
   letter-spacing: 20px;
 }
 
+.mainHeight {
+  height: 55vh;
+}
+
 .loginWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh; /* Viewport 높이만큼 설정 */
+  height: 55vh; /* Viewport 높이만큼 설정 */
 }
 
 .loginForm {
