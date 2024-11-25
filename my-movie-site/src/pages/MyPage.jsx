@@ -34,7 +34,7 @@ export default function MyPage() {
             return (
               <li key={movieId}>
                 <Link
-                  to={`/movieDetail/${movieId}`}
+                  to={`/movie/detail/${movieId}`}
                   className="underLineNone textBlack textCenter"
                 >
                   <img
