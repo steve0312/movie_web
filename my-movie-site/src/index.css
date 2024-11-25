@@ -63,7 +63,7 @@
 }
 
 .marginBottom {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .marginLeft {
@@ -136,7 +136,7 @@ ul {
   color: silver;
   text-align: center;
   font-size: 1rem;
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 @font-face {
