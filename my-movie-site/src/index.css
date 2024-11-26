@@ -28,6 +28,15 @@
   text-align: center; /* 로고 텍스트 중앙 정렬 */
 }
 
+.searchBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 70%;
+  width: 12rem;
+}
+
 .loginBetween {
   display: flex;
   justify-content: space-between;

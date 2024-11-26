@@ -1,11 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../store/slices/authSlice";
 
 export default function Header() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // 폼 제출 시 입력 값을 URL로 전달
+  function handleSubmit(e) {
+    e.preventDefault();
+    const query = e.target.elements.search.value; // 입력값 가져오기
+
+    navigate("/movie/search", { state: { search: `${query}` } }); // URL로 값 전달
+    // 입력한 필드 값을 초기화
+    e.target.reset();
+  }
 
   return (
     <>
@@ -15,6 +26,15 @@ export default function Header() {
             내플릭스
           </Link>
         </h1>
+        {/* 영화 검색창 */}
+        <form onSubmit={handleSubmit} className="searchBetween">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="검색할 영화를 입력"
+          />
+        </form>
         {isLoggedIn ? (
           <div className="logoutBetween">
             <Link
@@ -36,9 +56,6 @@ export default function Header() {
         ) : (
           <Link
             to="/login"
-            // onClick={() => {
-            //   dispatch(login());
-            // }}
             className="contentCenter underLineNone textWhite loginBetween"
           >
             로그인
