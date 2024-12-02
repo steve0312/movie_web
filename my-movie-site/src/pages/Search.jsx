@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import movieApi from "../api/moviesApi";
 
 export default function Search() {
-  // 검색창에 입력한 데이터를 받아옴
-  const location = useLocation();
-  const inputData = location.state.search;
-
   // 검색한 영화를 화면에 렌더링 시켜주기 위해 state 사용
   const [searchData, setSearchData] = useState([]);
 
+  // 검색창에 입력한 데이터를 받아옴
+  const { searchId } = useParams();
+
   // 공백이 있으면 query parameter에서 '+'로 표현되므로 동일한 형태로 format
-  const formatInputData = inputData.replaceAll(" ", "+");
+  const formatInputData = searchId.replaceAll("%20", " ");
 
   useEffect(() => {
     async function getSearchMovieData() {
       try {
         // 검색한 영화에 대한 데이터를 가져옴
         const data = await movieApi.getSearchMovie(formatInputData);
-        console.log("data.results.length : ", data.results.length);
 
         if (data.results.length === 0) {
           setSearchData(<div>검색한 영화가 존재하지 않습니다.</div>);
@@ -53,8 +51,8 @@ export default function Search() {
 
   return (
     <div className="mainHeight">
-      <h2 className="marginBottom">검색한 영화- {inputData}</h2>
-      <ul className="flex flexEven">{searchData}</ul>
+      <h2 className="marginBottom">검색한 영화- {searchId}</h2>
+      <ul className="flex flexEven dotNone">{searchData}</ul>
     </div>
   );
 }

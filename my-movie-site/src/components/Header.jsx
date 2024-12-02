@@ -11,9 +11,13 @@ export default function Header() {
   // 폼 제출 시 입력 값을 URL로 전달
   function handleSubmit(e) {
     e.preventDefault();
-    const query = e.target.elements.search.value; // 입력값 가져오기
 
-    navigate("/movie/search", { state: { search: `${query}` } }); // URL로 값 전달
+    // 입력값 가져오기
+    const query = e.target.elements.search.value;
+
+    // URL로 값 전달
+    navigate(`/movie/search/${query}`);
+
     // 입력한 필드 값을 초기화
     e.target.reset();
   }
