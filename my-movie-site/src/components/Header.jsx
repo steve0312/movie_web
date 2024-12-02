@@ -26,6 +26,30 @@ export default function Header() {
             내플릭스
           </Link>
         </h1>
+        {/* 상영 중인 영화- 전체 nav */}
+        <Link
+          to="/movie/nowPlaying"
+          state={{ data: "현재 상영 중인 영화- 전체" }}
+          className="contentCenter underLineNone textWhite nowPlayingBetween"
+        >
+          상영 중
+        </Link>
+        {/* 인기있는 영화- 전체 nav */}
+        <Link
+          to="/movie/popular"
+          state={{ data: "인기있는 영화- 전체" }}
+          className="contentCenter underLineNone textWhite popularBetween"
+        >
+          인기
+        </Link>
+        {/* 최고 평점 영화- 전체 nav */}
+        <Link
+          to="/movie/topRated"
+          state={{ data: "최고 평점 영화- 전체" }}
+          className="contentCenter underLineNone textWhite topRatedBetween"
+        >
+          최고 평점
+        </Link>
         {/* 영화 검색창 */}
         <form onSubmit={handleSubmit} className="searchBetween">
           <input
